@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block title %} Cadastro {% endblock %} {% block head%}
+
+<div class="auth-container">
+  <h1 class="project-title">AvaliaMente</h1>
+  <div class="auth-form-container">
+    <form class="auth-form" method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" id="cadastro">Cadastro</button>
+    </form>
+    <p class="login-link-text">Já possui uma conta? <a href="/usuario/login">Entre agora.</a></p>
+  </div>
+</div>
+
+{% endblock %}

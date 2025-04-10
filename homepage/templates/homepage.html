@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block title %} Página Inicial {% endblock %} {% block head%}
+
+<div class="auth-container">
+  <div class="auth-form-container">
+    <h1 class="project-title" style="text-align: center">AvaliaMente</h1>
+    {% if user.is_authenticated %}
+    <h2 style="text-align: center">Bem vindo ao AvaliaMente, {{nome}}!</h2>
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button class="link" type="submit">Sair</button>
+    </form>
+    {% else %}
+    <a class="link" href="{% url 'login' %}">Entrar</a>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
