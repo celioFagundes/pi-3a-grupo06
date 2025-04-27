@@ -9,12 +9,351 @@ body {
   width: 100%;
   background-color: #f9fafb;
 }
+.app-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+.app-header-wrapper {
+  background-color: white;
+  width: 100%;
+  border-bottom: 1px solid #e5e7eb;
+}
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+}
 .project-title {
   color: #006fee;
   font-size: 40px;
   font-weight: bold;
 }
-
+.header-user-info {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 20px;
+  font-size: 16px;
+}
+.header-user-info button {
+  width: 100%;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.user-results-section {
+  margin-bottom: 24px;
+}
+.user-results-section-title {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.user-results-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+.user-results-card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px;
+  border-radius: 8px;
+}
+.user-results-card-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: #111928;
+}
+.user-results-card-title {
+  font-size: 14px;
+  color: #6b7280;
+}
+.new-questionnaire-container {
+  background-color: #0489f5;
+  color: white;
+  border-radius: 8px;
+  padding: 40px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.new-questionnaire-container-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.new-questionnaire-container-message {
+  font-size: 16px;
+}
+.new-questionnaire-container-button {
+  width: fit-content;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0489f5;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 16px;
+}
+.chart-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 24px;
+}
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.questionnaires-answered-container {
+}
+.questionnaires-answered-title {
+  color: #0489f5;
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: fit-content;
+  border-bottom: 1px solid #0489f5;
+  margin-bottom: 50px;
+}
+.questionnaires-card-grid {
+  display: grid;
+  justify-content: start;
+  width: 100%;
+  grid-auto-columns: calc((100% - (5 - 1) * 1.6rem) / 4);
+  grid-template-columns: repeat(auto-fill, minmax(243px, 1fr));
+  grid-template-rows: auto;
+  gap: 1.5rem;
+}
+.questionnaire-card {
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.questionnaire-card-title {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.questionnaire-card-title-zero {
+  color: #63bd69;
+}
+.questionnaire-card-title-low {
+  color: #5b8c62;
+}
+.questionnaire-card-title-medium {
+  color: #ffbd07;
+}
+.questionnaire-card-title-high {
+  color: #ff3d00;
+}
+.questionnaire-card-user-name {
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+.questionnaire-card-button {
+  width: fit-content;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #0489f5;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+  margin: 16px 0;
+  display: block;
+  position: static;
+  height: 40px;
+}
+.questionnaire-card-date-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+  width: 100%;
+}
+.questionnaire-card-date-label {
+  font-weight: 500;
+}
+.questionnaire-card-date {
+  font-weight: bold;
+}
+.answer-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+.answer-form-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.answer-form-title h1 {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 35px;
+}
+.answer-form-title h2 {
+  font-weight: 500;
+  font-size: 16px;
+}
+.answer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.answer-form p {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.answer-form p label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+.answer-form button {
+  height: 48px;
+  width: fit-content;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #334155;
+  border: 1px solid #e5e7eb;
+  background-color: #006fee;
+  color: white;
+  padding: 12px 24px;
+  margin: 0 auto;
+}
+.results-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+  height: calc(100vh - 80px);
+  width: 100%;
+  max-width: 664px;
+  margin: 0 auto;
+}
+.results-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+.results-info h1 {
+  font-weight: bold;
+  font-size: 36px;
+  color: #105a98;
+}
+.results-info h2 {
+  font-weight: bold;
+  font-size: 20px;
+  color: #111928;
+}
+.results-info .badge {
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 6px;
+  padding: 4px 12px;
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 20px;
+  color: white;
+}
+.results-info .zero {
+  background-color: #6b7280;
+}
+.results-info .low {
+  background-color: #8cc9a3;
+}
+.results-info .medium {
+  background-color: #fac515;
+}
+.results-info .high {
+  background-color: #fb2626;
+}
+.results-feedback {
+  text-align: center;
+  background-color: #eff8ff;
+  border-radius: 12px;
+  padding: 24px;
+  font-size: 16px;
+  color: #374151;
+}
+.results-feedback p {
+  margin-top: 10px;
+}
+.results-container a {
+  font-size: 18px;
+  font-weight: 500;
+  color: #334155;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: white;
+  padding: 12px 24px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
 .auth-container {
   display: flex;
   justify-content: center;

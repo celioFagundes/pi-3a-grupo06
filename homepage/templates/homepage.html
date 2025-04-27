@@ -1,18 +1,131 @@
 {% extends 'base.html' %} {% block title %} Página Inicial {% endblock %} {% block head%}
+<div>
+  {% if user.is_authenticated %}
+  <div style="width: 100%">
+    <div>
+      <header class="app-header-wrapper">
+        <div class="app-container">
+          <div class="app-header">
+            <h1 class="project-title">AvaliaMente</h1>
+            <div class="header-user-info">
+              <p style="text-align: center">Bem vindo ao AvaliaMente, {{nome}}!</p>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="link" type="submit">Sair</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="app-container" style="padding: 24px 0px">
+        <section class="user-results-section">
+          <p class="user-results-section-title">Seus resultados</p>
+          <div class="user-results-cards-container">
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes.SEM_SOFRIMENTO }}</p>
+              <p class="user-results-card-title">Sem sofrimento</p>
+            </div>
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes.LEVE }}</p>
+              <p class="user-results-card-title">Sofrimento Leve</p>
+            </div>
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes.MODERADO }}</p>
+              <p class="user-results-card-title">Sofrimento Moderado</p>
+            </div>
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes.GRAVE }}</p>
+              <p class="user-results-card-title">Sofrimento Grave</p>
+            </div>
+          </div>
+        </section>
+        {% if user.is_superuser %}
+        <section class="user-results-section">
+          <p class="user-results-section-title">Resultados Gerais</p>
+          <div class="user-results-cards-container">
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes_geral.SEM_SOFRIMENTO }}</p>
+              <p class="user-results-card-title">Sem sofrimento</p>
+            </div>
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes_geral.LEVE }}</p>
+              <p class="user-results-card-title">Sofrimento Leve</p>
+            </div>
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes_geral.MODERADO }}</p>
+              <p class="user-results-card-title">Sofrimento Moderado</p>
+            </div>
+            <div class="user-results-card">
+              <p class="user-results-card-number">{{ classificacoes_geral.GRAVE }}</p>
+              <p class="user-results-card-title">Sofrimento Grave</p>
+            </div>
+          </div>
+        </section>
+        {% endif %}
 
-<div class="auth-container">
-  <div class="auth-form-container">
-    <h1 class="project-title" style="text-align: center">AvaliaMente</h1>
-    {% if user.is_authenticated %}
-    <h2 style="text-align: center">Bem vindo ao AvaliaMente, {{nome}}!</h2>
-    <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button class="link" type="submit">Sair</button>
-    </form>
-    {% else %}
-    <a class="link" href="{% url 'login' %}">Entrar</a>
-    {% endif %}
+        <section class="new-questionnaire-container">
+          <p class="new-questionnaire-container-title">Fazer um novo teste</p>
+          <p class="new-questionnaire-container-message">
+            Faça um novo o nosso teste para descobrir como está sua saúde mental
+          </p>
+          <a href="/questionario/responder-questionario" class="new-questionnaire-container-button"
+            >Ir para o teste</a
+          >
+        </section>
+        <section class="questionnaires-answered-container">
+          <p class="questionnaires-answered-title">
+            {% if user.is_superuser %} Últimos testes {% else %} Seus testes {% endif %}
+          </p>
+          {% if questionarios %}
+          <div class="questionnaires-card-grid">
+            {% for questionario in questionarios %}
+            <div class="questionnaire-card">
+              <div class="questionnaire-card-title">
+                {% if questionario.classificacao == 'SEM_SOFRIMENTO' %}
+                <p class="questionnaire-card-title-zero">Sem sofrimento</p>
+                {% elif questionario.classificacao == 'LEVE' %}
+                <p class="questionnaire-card-title-low">Leve</p>
+                {% elif questionario.classificacao == 'MODERADO' %}
+                <p class="questionnaire-card-title-medium">Moderado</p>
+                {% elif questionario.classificacao == 'GRAVE' %}
+                <p class="questionnaire-card-title-high">Grave</p>
+                {% endif %}
+              </div>
+              <a
+                href="{% url 'resultado-questionario' questionario.id %}"
+                class="questionnaire-card-button"
+                >Ver respostas</a
+              >
+              {% if user.is_superuser %}
+              <div class="questionnaire-card-user">
+                <p class="questionnaire-card-user-name">{{ questionario.usuario.nome }}</p>
+              </div>
+              {% endif %}
+
+              <div class="questionnaire-card-date-container">
+                <p class="questionnaire-card-date-label">Data de resposta</p>
+                <p class="questionnaire-card-date">{{ questionario.data_resposta|date:"d/m/Y" }}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div style="font-weight: 500; column-span: 2; width: 100%">
+            Você ainda não respondeu nenhum questionário.
+          </div>
+          {% endif %}
+        </section>
+      </div>
+    </div>
   </div>
+  {% else %}
+  <div
+    style="width: 100%; display: grid; align-items: center; justify-content: center; height: 100vh"
+  >
+    <div class="auth-form-container">
+      <h1 class="project-title" style="text-align: center">AvaliaMente</h1>
+      <a class="link" href="{% url 'login' %}">Entrar</a>
+    </div>
+  </div>
+  {% endif %} {% endblock %}
 </div>
-
-{% endblock %}

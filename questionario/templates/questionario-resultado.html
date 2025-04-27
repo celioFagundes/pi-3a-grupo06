@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block title %} Resultado Questionário {% endblock %} {% block head%}
+
+<div style="width: 100%; background-color: white">
+  <header class="app-header-wrapper">
+    <div class="app-container">
+      <div class="app-header">
+        <h1 class="project-title">AvaliaMente</h1>
+        {% if user.is_authenticated %}
+        <p style="text-align: center">{{nome}}</p>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  <div class="results-container">
+    <div class="results-info">
+      <h1>Seu resultado foi</h1>
+
+      <div>
+        {% if questionario.classificacao == 'SEM_SOFRIMENTO' %}
+        <p class="badge zero">Sem sinais de sofrimento</p>
+        {% elif questionario.classificacao == 'LEVE' %}
+        <p class="badge low">Leve</p>
+        {% elif questionario.classificacao == 'MODERADO' %}
+        <p class="badge medium">Moderado</p>
+        {% elif questionario.classificacao == 'GRAVE' %}
+        <p class="badge high">Grave</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="results-feedback">
+      <strong>Feedback sobre o resultado</strong>
+      {% if questionario.classificacao == 'SEM_SOFRIMENTO' %}
+      <p>Parabéns! Você não apresenta sinais de sofrimento emocional.</p>
+      {% elif questionario.classificacao == 'LEVE' %}
+      <p>
+        Você apresenta sinais leves de sofrimento. Recomendamos atenção e cuidado com sua saúde
+        mental.
+      </p>
+      {% elif questionario.classificacao == 'MODERADO' %}
+      <p>
+        Você apresenta sinais moderados de sofrimento. Procure conversar com um profissional da
+        saúde.
+      </p>
+      {% elif questionario.classificacao == 'GRAVE' %}
+      <p>
+        Você apresenta sinais graves de sofrimento. É altamente recomendado procurar ajuda
+        profissional imediatamente.
+      </p>
+      {% endif %}
+      <p></p>
+    </div>
+    <a href="/" style="text-decoration: none">Voltar</a>
+  </div>
+</div>
+
+{% endblock %}

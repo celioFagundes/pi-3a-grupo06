@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %} Responder questionário {% endblock %} {% block head%}
+
+<div style="width: 100%; background-color: white">
+  <header class="app-header-wrapper">
+    <div class="app-container">
+      <div class="app-header">
+        <h1 class="project-title">AvaliaMente</h1>
+        {% if user.is_authenticated %}
+        <p style="text-align: center">{{nome}}</p>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="answer-form-container">
+    <div class="answer-form-title">
+      <h1>Como está sua saúde mental?</h1>
+      <h2>
+        A proposta é que você avalie como tem se sentido nos últimos 30 dias em relação a sua saúde
+        mental. Por favor, sinta-se à vontade para responder. As perguntas abaixo são do instrument
+        Self Report Questionnaire (SRQ 20), para rastreamento de sofrimento mental, e não de
+        diagnóstico psiquiátrico (diagnóstico só pode ser fornecido por um profissional). As
+        respostas são do tipo sim ou não, divididas em quatro áreas (Humor Depressivo/Ansioso,
+        Sintomas somáticos, Decréscimos de energia vital e Pensamentos depressivos). O resultado
+        final composto pela soma de cada resposta afirmativa, que pode variar de 0 (nenhuma
+        probabilidade de sofrimento mental) a 20 (probabilidade extrema de sofrimento mental),
+        quando a soma for igual ou maior que sete (7). Para uma análise precisa, responda a todas as
+        questões.
+      </h2>
+    </div>
+    <form class="answer-form" method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" id="enviar-respostas">Enviar respostas</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

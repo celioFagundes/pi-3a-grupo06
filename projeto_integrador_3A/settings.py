@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuario',
     'homepage',
-    'formulario'
+    'perguntas',
+    'questionario',
+    'respostas'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'projeto_integrador-3a',
         'USER': 'root',
-        'PASSWORD': 'celiorootneni3090',
+        'PASSWORD': 'senharoot',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
